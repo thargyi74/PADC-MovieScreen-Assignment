@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,13 +17,14 @@ import com.yeminnaing.padc_moviescreenassignment.adapters.MoviePagerAdapter;
 import com.yeminnaing.padc_moviescreenassignment.fragments.MovieFragment;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.pager_for_movies)
     ViewPager pagerMovies;
 
-    @Bind(R.id.tl_movies)
+    @Bind(R.id.tabLayout)
     TabLayout tlMovies;
 
     private MoviePagerAdapter mMoviePagerAdapter;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        ButterKnife.bind(this, this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -42,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setTitle("Movie Shelf");
+        }
 
         mMoviePagerAdapter = new MoviePagerAdapter(getSupportFragmentManager());
         mMoviePagerAdapter.addTab(MovieFragment.newInstance(), getString(R.string.now_playing_movies));

@@ -7,7 +7,7 @@ import android.os.Bundle;
  * Created by yeminnaing on 11/10/17.
  */
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment extends android.support.v4.app.Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,8 +25,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        sendScreenHit();
+
     }
 
-    protected abstract void sendScreenHit();
+
 }
